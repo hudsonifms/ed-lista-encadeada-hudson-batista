@@ -41,8 +41,6 @@ class encadeamento:
 
         node_iterado.data = element
         
-
-
 # insert_beginning(value) — inserir elemento no início da lista
     def insert_beginning(self, value):
         novo_node = node(value)
@@ -81,8 +79,7 @@ class encadeamento:
             node_iterado = node_iterado.ponteiro           
         node_iterado.ponteiro = node_iterado.ponteiro.ponteiro
         self.size -= 1
-        
-            
+         
 # search(value) — buscar um elemento na lista
     def search(self, index):
         return self.get(index)
@@ -102,23 +99,10 @@ class encadeamento:
     def len(self):
         return self.size
     
-            
-
 # is_empty() — verificar se a lista está vazia
     def is_empty(self):
         return self.size == 0
             
         
-
-caideia = encadeamento()
-caideia.add(10)
-caideia.add(20)
-caideia.add(30)
-caideia.add(40)
-caideia[3] = 14
-
-
-caideia.show()
-print(caideia.len())
 
         
