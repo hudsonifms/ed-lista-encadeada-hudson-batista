@@ -1,6 +1,3 @@
-from tomlkit import value
-
-
 class node:
     def __init__(self, data=None):
         self.data = data
@@ -55,19 +52,31 @@ class encadeamento:
 
 # insert_end(value) — inserir elemento no final da lista
     def insert_end(self, value):
-        node = self.ponteiro
-        while(node.ponteiro != None):
-            node = node.ponteiro
+        if self.head is None:
+            self.head = node(value)
+            self.size += 1
+            return
+        
+        node_iterado = self.head
+
+        while node_iterado.ponteiro != None:
+            node_iterado = node_iterado.ponteiro
             
         novo_node = node(value)
-        node.ponteiro = novo_node
+        node_iterado.ponteiro = novo_node
+        self.size += 1
         
 # remove(value) — remover um elemento da lista
     def remove(self, index):
-        node_iterado = self.ponteiro
-        if(self.size <= index):
+        if self.size <= index:
             raise IndexError("index não existe")
         
+        if index == 0:
+            self.head = self.head.ponteiro
+            self.size -= 1
+            return
+        
+        node_iterado = self.head
         for i in range(index-1):
             node_iterado = node_iterado.ponteiro           
         node_iterado.ponteiro = node_iterado.ponteiro.ponteiro
@@ -76,22 +85,17 @@ class encadeamento:
             
 # search(value) — buscar um elemento na lista
     def search(self, index):
-        node_iterado = self.ponteiro
-        if(self.size <= index):
-            raise IndexError("index não existe")
-        
-        for i in range(index):
-            node_iterado = node_iterado.ponteiro           
-        return node_iterado.data
+        return self.get(index)
 
 # print_list() — imprimir os elementos da lista
     def show(self):
         node_iterado = self.head
-        print(node_iterado.data)
-        
-        while(node_iterado.ponteiro):
-            node_iterado = node_iterado.ponteiro
+        if node_iterado is None:
+            print("[]")
+            return
+        while node_iterado:
             print(node_iterado.data)
+            node_iterado = node_iterado.ponteiro
 
 # size() — retornar o tamanho da lista
         
