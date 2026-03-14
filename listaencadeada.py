@@ -8,19 +8,7 @@ class encadeamento:
         self.head = None
         self.size = 0
         
-    def add(self, data):
-        if(self.head == None):
-            self.head = node(data)
-            self.size += 1
-        
-        else:
-            node_iterado = self.head
-            while(node_iterado.ponteiro):
-                node_iterado = node_iterado.ponteiro            
-            node_iterado.ponteiro = node(data)
-            self.size += 1
-
-    def get(self, index):
+    def __getitem__(self, index):
         node_iterado = self.head
         
         if(self.size <= index):
@@ -96,7 +84,7 @@ class encadeamento:
 
 # size() — retornar o tamanho da lista
         
-    def len(self):
+    def __len__(self):
         return self.size
     
 # is_empty() — verificar se a lista está vazia
